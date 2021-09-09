@@ -7,7 +7,6 @@ const useInputValue = (initialState:any) => {
       setValueInput(initialState)
   }, [initialState])
   const onChange = (event:any) => {
-    console.log('useInputValue')
     setValueInput(event.target.value)
   }
   return {
