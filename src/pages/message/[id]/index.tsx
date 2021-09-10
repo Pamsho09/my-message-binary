@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+import Error from "next/error";
+import { Loading } from "../../../components/Loading";
 import styled from "styled-components";
 import Word from "../../../components/Word";
+import Custom404 from "../../404";
 const MessageContainer = styled.div`
-  width: 100%;
+  border-radius: 14px;
+  background: #f5f5f5;
+  box-shadow: 16px 16px 32px #d0d0d0, -16px -16px 32px #ffffff;
   height: auto;
+  padding: 10px;
+  min-height: 50vh;
+  max-width: 700px;
   margin: auto;
   display: grid;
   justify-content: center;
+  text-align: center;
   .container {
     width: 100%;
     display: flex;
@@ -38,23 +46,29 @@ function Index() {
     fetch(`/api/message/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setMessage(data.data);
+        data?.message ? setMessage(data) : setMessage(data);
       });
-  },[id]);
+  }, [id]);
+  console.log(message);
   return (
     <MessageContainer>
       <h1 className="container-title">My message in binary</h1>
       <h4>To click cards</h4>
 
       <div className="container">
-        {message &&
+        {message && message.message ? (
+          <Custom404/>
+        ) : message?.data ? (
           message.map((item: any, index: number) => (
             <Word
               key={index}
               color={colors[Math.floor(Math.random() * (9 - 0 + 1) + 0)]}
               {...item}
             />
-          ))}
+          ))
+        ) : (
+          <Loading />
+        )}
       </div>
     </MessageContainer>
   );

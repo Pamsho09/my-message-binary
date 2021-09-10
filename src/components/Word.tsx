@@ -4,6 +4,7 @@ interface Ip {
   colorBack: string;
 }
 const WordC = styled.div<Ip>`
+cursor: pointer;
   background-color: #${(props: Ip) => props.colorBack};
   color: #fff;
   padding: 15px;
