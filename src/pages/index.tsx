@@ -163,7 +163,7 @@ function Index({ color, title }: IProps) {
       </form>
       {url && (
         <div className="container-message">
-          <h4>localhost:3000/message/nnmzq</h4>
+          <h4>{url}</h4>
           <Icon color={`#${color}`} url={url||""} />
         </div>
       )}
