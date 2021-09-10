@@ -59,7 +59,7 @@ function Index() {
         {message && message.message ? (
           <Custom404/>
         ) : message?.data ? (
-          message.map((item: any, index: number) => (
+          message.data.map((item: any, index: number) => (
             <Word
               key={index}
               color={colors[Math.floor(Math.random() * (9 - 0 + 1) + 0)]}
